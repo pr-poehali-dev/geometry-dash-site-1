@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,6 +12,43 @@ import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const [activeSection, setActiveSection] = useState("home");
+  const [votedLevels, setVotedLevels] = useState<Set<number>>(new Set());
+
+  const handleSectionClick = (section: string) => {
+    setActiveSection(section);
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handlePlayClick = () => {
+    window.open(
+      "https://store.steampowered.com/app/322170/Geometry_Dash/",
+      "_blank",
+    );
+  };
+
+  const handleDownloadClick = () => {
+    window.open("https://www.geometrydash.com/", "_blank");
+  };
+
+  const handleVote = (index: number) => {
+    const newVotedLevels = new Set(votedLevels);
+    if (votedLevels.has(index)) {
+      newVotedLevels.delete(index);
+    } else {
+      newVotedLevels.add(index);
+    }
+    setVotedLevels(newVotedLevels);
+  };
+
+  const handleRequestLevel = () => {
+    alert(
+      "Форма для отправки реквеста уровня будет добавлена в следующем обновлении!",
+    );
+  };
   // Mock статистика игроков
   const playerStats = useMemo(
     () => [
@@ -84,49 +121,67 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center space-x-8">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
+              <button
+                onClick={() => handleSectionClick("home")}
+                className={`transition-colors font-roboto ${
+                  activeSection === "home"
+                    ? "text-gd-orange"
+                    : "text-gray-300 hover:text-gd-orange"
+                }`}
               >
                 Главная
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://geometrydash.com/mods", "_blank")
+                }
                 className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
               >
                 Моды
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://forum.geometrydash.com", "_blank")
+                }
                 className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
               >
                 Форум
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
+              </button>
+              <button
+                onClick={() => handleSectionClick("stats")}
+                className={`transition-colors font-roboto ${
+                  activeSection === "stats"
+                    ? "text-gd-orange"
+                    : "text-gray-300 hover:text-gd-orange"
+                }`}
               >
                 О игре
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
+              </button>
+              <button
+                onClick={() => handleSectionClick("levels")}
+                className={`transition-colors font-roboto ${
+                  activeSection === "levels"
+                    ? "text-gd-orange"
+                    : "text-gray-300 hover:text-gd-orange"
+                }`}
               >
                 Уровни
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://support.geometrydash.com", "_blank")
+                }
                 className="text-gray-300 hover:text-gd-orange transition-colors font-roboto"
               >
                 Поддержка
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section id="home" className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-gd-orange/20 to-gd-blue/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-white mb-6 animate-float">
@@ -138,11 +193,15 @@ const Index = () => {
             мира.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gd-orange hover:bg-gd-orange/80 text-white px-8 py-3 text-lg font-roboto animate-pulse-glow">
+            <Button
+              onClick={handlePlayClick}
+              className="bg-gd-orange hover:bg-gd-orange/80 text-white px-8 py-3 text-lg font-roboto animate-pulse-glow"
+            >
               <Icon name="Play" className="mr-2" size={20} />
               Играть сейчас
             </Button>
             <Button
+              onClick={handleDownloadClick}
               variant="outline"
               className="border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white px-8 py-3 text-lg font-roboto"
             >
@@ -154,7 +213,7 @@ const Index = () => {
       </section>
 
       {/* Player Statistics */}
-      <section className="py-16 bg-gd-gray/30">
+      <section id="stats" className="py-16 bg-gd-gray/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-orbitron font-bold text-white mb-4">
@@ -208,7 +267,7 @@ const Index = () => {
       </section>
 
       {/* Level Requests */}
-      <section className="py-16">
+      <section id="levels" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-orbitron font-bold text-white mb-4">
@@ -261,16 +320,22 @@ const Index = () => {
                     <div className="flex items-center text-gd-blue">
                       <Icon name="Heart" className="mr-2" size={16} />
                       <span className="font-roboto">
-                        {request.votes} голосов
+                        {request.votes + (votedLevels.has(index) ? 1 : 0)}{" "}
+                        голосов
                       </span>
                     </div>
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-gd-orange text-gd-orange hover:bg-gd-orange hover:text-white"
+                      onClick={() => handleVote(index)}
+                      className={`border-gd-orange font-roboto ${
+                        votedLevels.has(index)
+                          ? "bg-gd-orange text-white"
+                          : "text-gd-orange hover:bg-gd-orange hover:text-white"
+                      }`}
                     >
                       <Icon name="ThumbsUp" className="mr-2" size={14} />
-                      Голосовать
+                      {votedLevels.has(index) ? "Проголосовал" : "Голосовать"}
                     </Button>
                   </div>
                 </CardContent>
@@ -279,7 +344,10 @@ const Index = () => {
           </div>
 
           <div className="text-center">
-            <Button className="bg-gd-blue hover:bg-gd-blue/80 text-white px-8 py-3 font-roboto">
+            <Button
+              onClick={handleRequestLevel}
+              className="bg-gd-blue hover:bg-gd-blue/80 text-white px-8 py-3 font-roboto"
+            >
               <Icon name="Plus" className="mr-2" size={20} />
               Предложить уровень
             </Button>
@@ -308,28 +376,37 @@ const Index = () => {
               </h3>
               <ul className="space-y-2 text-gray-400 font-roboto">
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={handleDownloadClick}
                     className="hover:text-gd-orange transition-colors"
                   >
                     Скачать
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      alert(
+                        "Минимальные требования: Windows 7+, 2GB RAM, DirectX 9.0c",
+                      )
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Системные требования
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://steamcommunity.com/app/322170/announcements/",
+                        "_blank",
+                      )
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Обновления
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -339,28 +416,34 @@ const Index = () => {
               </h3>
               <ul className="space-y-2 text-gray-400 font-roboto">
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open("https://forum.geometrydash.com", "_blank")
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Форум
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open("https://discord.gg/geometrydash", "_blank")
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Discord
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open("https://reddit.com/r/geometrydash", "_blank")
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Reddit
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -370,28 +453,39 @@ const Index = () => {
               </h3>
               <ul className="space-y-2 text-gray-400 font-roboto">
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      alert(
+                        "Ответы на часто задаваемые вопросы скоро будут доступны!",
+                      )
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     FAQ
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open("mailto:support@geometrydash.com", "_blank")
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Связаться с нами
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/robtopgames/geometrydash/issues",
+                        "_blank",
+                      )
+                    }
                     className="hover:text-gd-orange transition-colors"
                   >
                     Баг-репорты
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
