@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,50 +13,61 @@ import Icon from "@/components/ui/icon";
 
 const Index = () => {
   // Mock статистика игроков
-  const playerStats = [
-    {
-      name: "ProGamer2024",
-      level: "Deadlocked",
-      attempts: 847,
-      percentage: 98,
-    },
-    {
-      name: "GeometryMaster",
-      level: "Bloodbath",
-      attempts: 1254,
-      percentage: 76,
-    },
-    { name: "CubeRunner", level: "Sonic Wave", attempts: 692, percentage: 84 },
-    { name: "DashHero", level: "Tartarus", attempts: 2156, percentage: 67 },
-  ];
+  const playerStats = useMemo(
+    () => [
+      {
+        name: "ProGamer2024",
+        level: "Deadlocked",
+        attempts: 847,
+        percentage: 98,
+      },
+      {
+        name: "GeometryMaster",
+        level: "Bloodbath",
+        attempts: 1254,
+        percentage: 76,
+      },
+      {
+        name: "CubeRunner",
+        level: "Sonic Wave",
+        attempts: 692,
+        percentage: 84,
+      },
+      { name: "DashHero", level: "Tartarus", attempts: 2156, percentage: 67 },
+    ],
+    [],
+  );
 
   // Mock реквесты уровней
-  const levelRequests = [
-    {
-      title: "Neon Paradise",
-      author: "NeonCreator",
-      difficulty: "Extreme Demon",
-      votes: 156,
-    },
-    {
-      title: "Crystal Caverns",
-      author: "GemMaster",
-      difficulty: "Insane",
-      votes: 89,
-    },
-    {
-      title: "Cyber City",
-      author: "TechWiz",
-      difficulty: "Hard Demon",
-      votes: 234,
-    },
-    {
-      title: "Mystic Forest",
-      author: "NatureLover",
-      difficulty: "Easy Demon",
-      votes: 67,
-    },
-  ];
+  const levelRequests = useMemo(
+    () => [
+      {
+        title: "Neon Paradise",
+        author: "NeonCreator",
+        difficulty: "Extreme Demon",
+        votes: 156,
+      },
+      {
+        title: "Crystal Caverns",
+        author: "GemMaster",
+        difficulty: "Insane",
+        votes: 89,
+      },
+      {
+        title: "Cyber City",
+        author: "TechWiz",
+        difficulty: "Hard Demon",
+        votes: 234,
+      },
+      {
+        title: "Mystic Forest",
+        author: "NatureLover",
+        difficulty: "Easy Demon",
+        votes: 67,
+      },
+    ],
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gd-dark via-gray-900 to-gd-gray">
