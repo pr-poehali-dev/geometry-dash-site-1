@@ -192,7 +192,7 @@ const Index = () => {
             препятствия, создавайте уровни и соревнуйтесь с игроками со всего
             мира.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button
               onClick={handlePlayClick}
               className="bg-gd-orange hover:bg-gd-orange/80 text-white px-8 py-3 text-lg font-roboto animate-pulse-glow"
@@ -207,6 +207,128 @@ const Index = () => {
             >
               <Icon name="Download" className="mr-2" size={20} />
               Скачать
+            </Button>
+          </div>
+
+          <div className="flex justify-center space-x-3 mb-6">
+            <Button
+              onClick={() => alert("Открываем таблицу лидеров!")}
+              variant="outline"
+              className="border-gd-orange text-gd-orange hover:bg-gd-orange hover:text-white font-roboto"
+            >
+              <Icon name="Trophy" className="mr-2" size={16} />
+              Лидеры
+            </Button>
+            <Button
+              onClick={() => alert("Открываем соревнования!")}
+              variant="outline"
+              className="border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white font-roboto"
+            >
+              <Icon name="Gamepad2" className="mr-2" size={16} />
+              Турниры
+            </Button>
+            <Button
+              onClick={() => alert("Открываем сообщество!")}
+              variant="outline"
+              className="border-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white font-roboto"
+            >
+              <Icon name="Users" className="mr-2" size={16} />
+              Комьюнити
+            </Button>
+          </div>
+
+          <div className="flex justify-center space-x-2">
+            <Button
+              onClick={() =>
+                window.open(
+                  "https://twitter.com/intent/tweet?text=Попробуйте Geometry Dash!",
+                  "_blank",
+                )
+              }
+              size="sm"
+              variant="ghost"
+              className="text-gray-400 hover:text-gd-blue hover:bg-gd-blue/10"
+            >
+              <Icon name="Twitter" size={16} />
+            </Button>
+            <Button
+              onClick={() =>
+                window.open(
+                  "https://www.facebook.com/sharer/sharer.php?u=https://geometrydash.com",
+                  "_blank",
+                )
+              }
+              size="sm"
+              variant="ghost"
+              className="text-gray-400 hover:text-gd-blue hover:bg-gd-blue/10"
+            >
+              <Icon name="Facebook" size={16} />
+            </Button>
+            <Button
+              onClick={() =>
+                window.open("https://www.youtube.com/c/geometrydash", "_blank")
+              }
+              size="sm"
+              variant="ghost"
+              className="text-gray-400 hover:text-gd-orange hover:bg-gd-orange/10"
+            >
+              <Icon name="Youtube" size={16} />
+            </Button>
+            <Button
+              onClick={() => alert("Ссылка скопирована!")}
+              size="sm"
+              variant="ghost"
+              className="text-gray-400 hover:text-gd-green hover:bg-gd-green/10"
+            >
+              <Icon name="Share" size={16} />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Actions Section */}
+      <section className="py-8 bg-gd-dark/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center space-x-4 flex-wrap gap-2">
+            <Button
+              onClick={() => alert("Открываем редактор уровней!")}
+              variant="outline"
+              className="border-gd-orange text-gd-orange hover:bg-gd-orange hover:text-white font-roboto"
+            >
+              <Icon name="Edit" className="mr-2" size={16} />
+              Редактор
+            </Button>
+            <Button
+              onClick={() => alert("Показываем случайный уровень!")}
+              variant="outline"
+              className="border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white font-roboto"
+            >
+              <Icon name="Shuffle" className="mr-2" size={16} />
+              Случайный
+            </Button>
+            <Button
+              onClick={() => alert("Открываем горячие клавиши!")}
+              variant="outline"
+              className="border-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white font-roboto"
+            >
+              <Icon name="Keyboard" className="mr-2" size={16} />
+              Клавиши
+            </Button>
+            <Button
+              onClick={() => alert("Открываем настройки!")}
+              variant="outline"
+              className="border-gd-green text-gd-green hover:bg-gd-green hover:text-white font-roboto"
+            >
+              <Icon name="Settings" className="mr-2" size={16} />
+              Настройки
+            </Button>
+            <Button
+              onClick={() => alert("Показываем статистику!")}
+              variant="outline"
+              className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-roboto"
+            >
+              <Icon name="BarChart" className="mr-2" size={16} />
+              Моя стата
             </Button>
           </div>
         </div>
@@ -257,6 +379,30 @@ const Index = () => {
                       <span className="text-white">
                         {player.attempts.toLocaleString()}
                       </span>
+                    </div>
+                    <div className="flex gap-2 mt-3">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white"
+                        onClick={() =>
+                          alert(`Смотрим рекорд игрока ${player.name}`)
+                        }
+                      >
+                        <Icon name="Eye" className="mr-1" size={12} />
+                        Смотреть
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-gd-orange text-gd-orange hover:bg-gd-orange hover:text-white"
+                        onClick={() =>
+                          alert(`Челлендж с ${player.name} отправлен!`)
+                        }
+                      >
+                        <Icon name="Zap" className="mr-1" size={12} />
+                        Вызов
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -316,34 +462,58 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center text-gd-blue">
-                      <Icon name="Heart" className="mr-2" size={16} />
-                      <span className="font-roboto">
-                        {request.votes + (votedLevels.has(index) ? 1 : 0)}{" "}
-                        голосов
-                      </span>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center text-gd-blue">
+                        <Icon name="Heart" className="mr-2" size={16} />
+                        <span className="font-roboto">
+                          {request.votes + (votedLevels.has(index) ? 1 : 0)}{" "}
+                          голосов
+                        </span>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleVote(index)}
+                        className={`border-gd-orange font-roboto ${
+                          votedLevels.has(index)
+                            ? "bg-gd-orange text-white"
+                            : "text-gd-orange hover:bg-gd-orange hover:text-white"
+                        }`}
+                      >
+                        <Icon name="ThumbsUp" className="mr-2" size={14} />
+                        {votedLevels.has(index) ? "Проголосовал" : "Голосовать"}
+                      </Button>
                     </div>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleVote(index)}
-                      className={`border-gd-orange font-roboto ${
-                        votedLevels.has(index)
-                          ? "bg-gd-orange text-white"
-                          : "text-gd-orange hover:bg-gd-orange hover:text-white"
-                      }`}
-                    >
-                      <Icon name="ThumbsUp" className="mr-2" size={14} />
-                      {votedLevels.has(index) ? "Проголосовал" : "Голосовать"}
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white"
+                        onClick={() =>
+                          alert(`Смотрим превью уровня ${request.title}`)
+                        }
+                      >
+                        <Icon name="Eye" className="mr-1" size={12} />
+                        Превью
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-gd-green text-gd-green hover:bg-gd-green hover:text-white"
+                        onClick={() => alert(`Скачиваем ${request.title}`)}
+                      >
+                        <Icon name="Download" className="mr-1" size={12} />
+                        Скачать
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="text-center">
+          <div className="text-center space-y-4">
             <Button
               onClick={handleRequestLevel}
               className="bg-gd-blue hover:bg-gd-blue/80 text-white px-8 py-3 font-roboto"
@@ -351,6 +521,32 @@ const Index = () => {
               <Icon name="Plus" className="mr-2" size={20} />
               Предложить уровень
             </Button>
+            <div className="flex justify-center space-x-3">
+              <Button
+                onClick={() => alert("Показываем топ уровней!")}
+                variant="outline"
+                className="border-gd-orange text-gd-orange hover:bg-gd-orange hover:text-white font-roboto"
+              >
+                <Icon name="TrendingUp" className="mr-2" size={16} />
+                Топ уровни
+              </Button>
+              <Button
+                onClick={() => alert("Открываем фильтры!")}
+                variant="outline"
+                className="border-gd-blue text-gd-blue hover:bg-gd-blue hover:text-white font-roboto"
+              >
+                <Icon name="Filter" className="mr-2" size={16} />
+                Фильтры
+              </Button>
+              <Button
+                onClick={() => alert("Открываем случайный уровень!")}
+                variant="outline"
+                className="border-gd-green text-gd-green hover:bg-gd-green hover:text-white font-roboto"
+              >
+                <Icon name="Dice1" className="mr-2" size={16} />
+                Случайный
+              </Button>
+            </div>
           </div>
         </div>
       </section>
